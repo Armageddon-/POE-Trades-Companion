@@ -6,6 +6,12 @@
 		Menu, Tray, Icon, %A_ScriptDir%\resources\icon.ico
 	Menu,Tray,Tip,POE Trades Companion
 	Menu,Tray,NoStandard
+	global CB_TIMER := 700
+	Menu,Tray,Add,Clipboard timer 700ms, CB_TIMER_SET
+	Menu,Tray,Add,Clipboard timer 1200ms, CB_TIMER_SET
+	Menu,Tray,Add,Clipboard timer 2000ms, CB_TIMER_SET
+	Menu,Tray,Check,Clipboard timer 700ms
+	Menu,Tray,Add
 	if (DEBUG.settings.open_settings_gui) {
 			Menu,Tray,Add,Recreate Settings GUI, Tray_CreateSettings
 	}
@@ -49,6 +55,21 @@
 	Menu, Tray, Icon,My Stats,% PROGRAM.ICONS_FOLDER "\chart.ico"
 	Menu, Tray, Icon,Reload,% PROGRAM.ICONS_FOLDER "\refresh.ico"
 	Menu, Tray, Icon,Close,% PROGRAM.ICONS_FOLDER "\x.ico"
+}
+
+CB_TIMER_SET() {
+	global CB_TIMER
+	if (A_ThisMenuItem = "Clipboard timer 700ms")
+		CB_TIMER := 700
+	else if (A_ThisMenuItem = "Clipboard timer 1200ms")
+		CB_TIMER := 1200
+	else if (A_ThisMenuItem = "Clipboard timer 2000ms")
+		CB_TIMER := 2000
+
+	try Menu, Tray, Uncheck, Clipboard timer 700ms
+	try Menu, Tray, Uncheck, Clipboard timer 1200ms
+	try Menu, Tray, Uncheck, Clipboard timer 2000ms
+	Menu,Tray,Check,%A_ThisMenuItem%
 }
 
 Tray_OpenBetaTasks() {

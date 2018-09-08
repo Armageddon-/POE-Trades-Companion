@@ -512,8 +512,9 @@
 				}
 
 				if (doCopyActionAtEnd = True) {
-					Sleep 100
-					Do_Action("COPY_ITEM_INFOS", "", , uniqueNum)
+					global CB_TIMER
+					SetTimer, COPY_ITEM_INFOS, -%CB_TIMER%
+					; Do_Action("COPY_ITEM_INFOS", "", , uniqueNum)
 				}
 			}
 			else if (btnType = "Special") {
@@ -550,6 +551,11 @@
 			}
 			GUI_Trades.DoTradeButtonAction(btnNum, btnType)
 		}
+		return
+
+		DoTradeButtonAction_COPY_ITEM_INFOS:
+			Do_Action(actionType, actionContent, , uniqueNum)
+		return
 	}
 
 	Redraw() {

@@ -323,6 +323,10 @@ Start_Script() {
 DoNothing:
 Return
 
+COPY_ITEM_INFOS:
+	GUI_Trades.CopyItemInfos()
+return
+
 ; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 #Include %A_ScriptDir%\lib\
